@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 # Impulse Evals
 
+<p align="center">
+  <img src="docs/images/impulse-demo.svg" alt="Impulse demo: the agent says the appointment is booked after the tool call failed, and the judge fails the run" width="720">
+</p>
+
 Impulse Evals tests AI voice and chat agents: a simulated caller talks to your agent, and an LLM judge grades it against your system prompt. It is vendor-neutral and private: it works with any stack, runs on your machine or in your CI, and has compliance checks built in.
 
 Any language, any stack, any industry.
