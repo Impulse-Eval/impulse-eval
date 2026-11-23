@@ -23,7 +23,11 @@ impulse run examples/config.yaml --dry-run
 
 **What success looks like:** the command exits with code `0`, prints `6 scenarios, 6 passed, 0 failed`, and writes `.impulse/runs/<run_id>/report.html`. Open it in a browser. The dry run talks to a tiny echo agent with a scripted caller and makes zero LLM calls: it proves the install and config work, and skips the judge.
 
-Only need the package, not the examples? `pip install "git+https://github.com/Impulse-Eval/impulse-eval"`.
+Only need the package, not the examples?
+
+```bash
+pip install "git+https://github.com/Impulse-Eval/impulse-eval"
+```
 
 ### Your first real run
 
@@ -80,7 +84,14 @@ Version `0.1.0`, the first public release (alpha). Dates and versions are in [Ve
 
 ## Contributing
 
-Contributions are welcome: start with [CONTRIBUTING.md](CONTRIBUTING.md), set up with `pip install -e ".[dev]"`, and run `python -m pytest -q`. The most useful help right now is to **[test noise simulation](docs/contributing.md#help-us-test-noise-simulation) on your own voice agent**; testers are added to [CONTRIBUTORS.md](CONTRIBUTORS.md). Report security problems privately ([SECURITY.md](SECURITY.md)), and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome: start with [CONTRIBUTING.md](CONTRIBUTING.md). Set up from the root of your clone and run the tests:
+
+```bash
+pip install -e ".[dev]"
+python -m pytest -q
+```
+
+The most useful help right now is to **[test noise simulation](docs/contributing.md#help-us-test-noise-simulation) on your own voice agent**; testers are added to [CONTRIBUTORS.md](CONTRIBUTORS.md). Report security problems privately ([SECURITY.md](SECURITY.md)), and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
