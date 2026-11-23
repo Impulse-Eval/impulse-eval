@@ -5,19 +5,7 @@
 
 Stop testing voice agents with manual phone calls or text-only mocks. Impulse Evals simulates real callers (with TTS/STT audio and background noise), grades conversations against your agent's own system prompt, and generates playable HTML audio reports—100% locally or in CI.
 
-<p align="center">
-  <img src="docs/images/impulse-demo.svg" alt="Impulse demo: the agent says the appointment is booked after the tool call failed, and the judge fails the run" width="720">
-</p>
-
-<!--
-  VIDEO PLACEHOLDER: in the GitHub web editor, drag and drop docs/images/report-walkthrough.mp4 onto this line.
-  GitHub uploads it and inserts a https://github.com/user-attachments/assets/... URL on its own line,
-  which renders as an inline video player. Then you can delete the fallback link below.
-  A copy was already uploaded once; to reuse it, paste this URL on its own line instead:
-  https://github.com/user-attachments/assets/a7272d6c-41a7-4efa-af84-4b815421a5e6
--->
-
-**[Watch the report walkthrough (MP4)](docs/images/report-walkthrough.mp4)**: the call recording, failed checks with "Hear turn N" links, slow replies in red, and the failing turn highlighted.
+https://github.com/user-attachments/assets/a7272d6c-41a7-4efa-af84-4b815421a5e6
 
 > [!TIP]
 > Using Claude? Install the Impulse Evals skill ([docs/skill.md](docs/skill.md)) and ask it to write your `config.yaml`.
