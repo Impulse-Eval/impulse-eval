@@ -84,7 +84,7 @@ Version `0.1.0`, the first public release (alpha). Dates and versions are in [Ve
 
 ## Contributing
 
-Contributions are welcome: start with [CONTRIBUTING.md](CONTRIBUTING.md). Set up from the root of your clone and run the tests:
+Contributions are welcome. **New here? Pick one of the [good first issues](https://github.com/Impulse-Eval/impulse-eval/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)**, then read [CONTRIBUTING.md](CONTRIBUTING.md). Set up from the root of your clone and run the tests:
 
 ```bash
 pip install -e ".[dev]"
