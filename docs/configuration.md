@@ -329,6 +329,8 @@ File permissions: the file is created with mode 0600, readable and writable by y
 
 The commands that read no `config.yaml` take steps 2 and 3 only: `impulse generate` and `impulse convert-failure` (primary model), and `impulse calibrate` (the roles its checks need).
 
+**Which role judges what:** critical and high compliance checks use the primary model, medium ones the fast model. The primary model string may name 14B parameters or fewer (for example `:7b`). If the run then includes a critical check, Impulse warns you to run `impulse calibrate` before trusting critical verdicts ([Calibration](calibration.md)).
+
 **Keys:** the environment variable first, then `[keys]` in `.impulse/config.toml`, then a config error naming the key. Every role is resolved before the first LLM call of a run, so a missing key never follows a paid call. Key values never appear in logs, reports, or error messages.
 
 Which variable a role's key comes from:

@@ -6,7 +6,7 @@ This guide takes you from install to a dry run, your models, and a first real ru
 ## Quick version
 
 - **What it is.** Impulse plays a simulated caller against your agent and judges each call against your agent's own system prompt. A dry run checks everything except the judge, with no model and no key.
-- **The commands most people need.** Install straight from GitHub with `pip install "git+https://github.com/Impluse-Evals/impulse-eval"`. To try the examples, install from the root of a clone and make a dry run of the example:
+- **The commands most people need.** Install straight from GitHub with `pip install "git+https://github.com/Impulse-Eval/impulse-eval"`. To try the examples, install from the root of a clone and make a dry run of the example:
 
   ```bash
   pip install -e .
@@ -34,12 +34,12 @@ Straight from GitHub, with no clone:
 
 ```bash
 # Base install
-pip install "git+https://github.com/Impluse-Evals/impulse-eval"
+pip install "git+https://github.com/Impulse-Eval/impulse-eval"
 
 # With optional extras (Pipecat, LiveKit, local speech, etc.)
-pip install "impulse-evals[pipecat] @ git+https://github.com/Impluse-Evals/impulse-eval"
-pip install "impulse-evals[livekit] @ git+https://github.com/Impluse-Evals/impulse-eval"
-pip install "impulse-evals[local] @ git+https://github.com/Impluse-Evals/impulse-eval"
+pip install "impulse-evals[pipecat] @ git+https://github.com/Impulse-Eval/impulse-eval"
+pip install "impulse-evals[livekit] @ git+https://github.com/Impulse-Eval/impulse-eval"
+pip install "impulse-evals[local] @ git+https://github.com/Impulse-Eval/impulse-eval"
 ```
 
 The developer path, from the root of a clone of the repository (verified on 2026-10-26 in a fresh virtual environment, Windows, Python 3.14.7):
@@ -48,7 +48,22 @@ The developer path, from the root of a clone of the repository (verified on 2026
 pip install -e .
 ```
 
-The examples used below (`examples/config.yaml` and its agent) live in the repository, so the steps below assume a clone. The optional extras (`local`, `light`, `voice`, `livekit`, `pipecat`, `dev`) are listed in the [README](../README.md#install).
+The examples used below (`examples/config.yaml` and its agent) live in the repository, so the steps below assume a clone.
+
+#### Optional extras
+
+Combine them, e.g. `pip install "impulse-evals[local,pipecat] @ git+https://github.com/Impulse-Eval/impulse-eval"`, or `pip install -e ".[local,pipecat]"` from a clone:
+
+| extra | adds | for |
+|---|---|---|
+| `local` | faster-whisper, transformers, soundfile | free in-process speech models (`local_hf`); install `torch` yourself (CPU or GPU build) |
+| `light` | kokoro-onnx (not on Python 3.14; see [Troubleshooting](troubleshooting.md#voice)), faster-whisper | the light local voice (`local_light`): free speech models with no PyTorch and no GPU |
+| `voice` | sounddevice, pydub (plus audioop-lts on Python 3.13+) | converting agent audio that is not WAV (pydub, with ffmpeg) |
+| `livekit` | livekit, livekit-api, livekit-protocol | the LiveKit adapter |
+| `pipecat` | pipecat-ai 1.12.x (capped below 1.13 until a newer release is tested) | the Pipecat adapter |
+| `dev` | pytest-asyncio, ruff, mypy | working on Impulse itself |
+
+On Windows, if `torch` or `livekit` fail to import with a missing `vcruntime140_1.dll`, install the latest Microsoft Visual C++ Redistributable (x64), then open a new shell ([Troubleshooting](troubleshooting.md)).
 
 Success: `impulse --help` lists the commands `run`, `report`, `compare`, `doctor`, `init`, `generate`, `convert-failure`, and `calibrate` (verified).
 

@@ -7,7 +7,7 @@ Every code sample on this page is marked "check against your Pipecat version": P
 
 ## Run it
 
-1. Install the extra from a clone of the repository: `pip install -e ".[pipecat]"` (without a clone: `pip install "impulse-evals[pipecat] @ git+https://github.com/Impluse-Evals/impulse-eval"`). It installs `pipecat-ai>=1.12,<1.13`, the tested release, which includes `pipecat.evals`. Success: the install finishes without errors.
+1. Install the extra from a clone of the repository: `pip install -e ".[pipecat]"` (without a clone: `pip install "impulse-evals[pipecat] @ git+https://github.com/Impulse-Eval/impulse-eval"`). It installs `pipecat-ai>=1.12,<1.13`, the tested release, which includes `pipecat.evals`. Success: the install finishes without errors.
 2. Prepare your bot with the checklist below.
 3. Start your bot with the eval transport and copy the WebSocket URL it prints into `pipecat.url` in `config.yaml`.
 

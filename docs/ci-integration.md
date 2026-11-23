@@ -103,7 +103,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install
-        run: python -m pip install "git+https://github.com/Impluse-Evals/impulse-eval"   # or install from your clone
+        run: python -m pip install "git+https://github.com/Impulse-Eval/impulse-eval"   # or install from your clone
 
       - name: Validate the config (no LLM calls)
         run: impulse run evals/config.yaml --dry-run --reporter json
@@ -205,6 +205,12 @@ New scenario errors:
 A baseline scenario that ended with an error has no check results. So every check that fails in `RUN_B` for that scenario counts as newly failing. It is listed under "Newly failing checks", and a failed `high` assertion or a poor UNIV-019 or UNIV-025 there is a high regression. Use a baseline run without scenario errors, or read such rows with that in mind.
 
 To look at a run's own report (players, timeline, failed checks), see [Reading the report](reading-the-report.md).
+
+### Other commands for a CI loop
+
+- **`impulse compare RUN_A RUN_B`** takes run IDs, run folders, or `run.json` paths, and writes `compare_<A>_vs_<B>.json` and `.html` to `.impulse/runs/`.
+- **`impulse report RUN_ID`** rewrites a run's `report.html`. `--no-embed-audio` links the files in `audio/` instead of embedding them, which keeps CI artifacts small; the players then work only while the report sits next to its `audio/` folder ([CLI reference](cli.md#impulse-report)).
+- **`impulse convert-failure .impulse/runs/<run_id>/scenarios/<name>.json`** turns a failed scenario into a regression scenario under `scenarios/regression/`. Review it and add it to your `config.yaml`, so the failure is gated on every later run ([Cookbook](cookbook.md#a-regression-test-from-a-failed-call)).
 
 ### From pytest
 

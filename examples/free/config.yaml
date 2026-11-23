@@ -2,7 +2,7 @@
 # All-open-source Impulse Evals config: LLMs served locally by Ollama, speech by local Hugging Face
 # models running in-process (local_hf). No API key is needed anywhere.
 # Run every step from the repository root, in the same shell:
-#   1. pip install -e ".[local]"       (from a clone; without one: pip install "impulse-evals[local] @ git+https://github.com/Impluse-Evals/impulse-eval")
+#   1. pip install -e ".[local]"       (from a clone; without one: pip install "impulse-evals[local] @ git+https://github.com/Impulse-Eval/impulse-eval")
 #   2. impulse init --profile free     (writes your Ollama models to .impulse/config.toml, and a starter
 #                                        config.yaml for your own agent when the folder has none; no key asked)
 #   3. impulse init does not change this file: set voice_config.tts.model and voice_config.stt.model

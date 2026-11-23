@@ -18,7 +18,7 @@ Voice mode tests your agent with real audio: the simulated caller's words become
 - **The config most people start with** (free, verified on 2026-10-26 in en-US and es-MX):
 
 ```bash
-pip install -e ".[light]"     # from a clone; without one: pip install "impulse-evals[light] @ git+https://github.com/Impluse-Evals/impulse-eval"
+pip install -e ".[light]"     # from a clone; without one: pip install "impulse-evals[light] @ git+https://github.com/Impulse-Eval/impulse-eval"
 ```
 
 ```yaml
@@ -120,7 +120,7 @@ TTS also needs PyTorch, which the extra does not install. STT needs no torch.
 
 `provider: local_light` runs Kokoro text-to-speech (an ONNX model) and faster-whisper speech-to-text in the Impulse process. It needs no PyTorch, no GPU, no server and no key. Use it when `local_hf` is too heavy for your machine.
 
-Install: `pip install "impulse-evals[light] @ git+https://github.com/Impluse-Evals/impulse-eval"`, or `pip install -e ".[light]"` from a clone. On a fresh Python 3.12 environment this installed kokoro-onnx 0.6.1, faster-whisper 1.2.1 and onnxruntime 1.31.0, and no PyTorch (verified).
+Install: `pip install "impulse-evals[light] @ git+https://github.com/Impulse-Eval/impulse-eval"`, or `pip install -e ".[light]"` from a clone. On a fresh Python 3.12 environment this installed kokoro-onnx 0.6.1, faster-whisper 1.2.1 and onnxruntime 1.31.0, and no PyTorch (verified).
 
 ```yaml
 # impulse:validate

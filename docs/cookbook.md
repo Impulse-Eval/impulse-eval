@@ -47,6 +47,39 @@ What it checks:
 
 The agent opens the call (`direction: outbound`). The Hindi caller with a North Indian accent is reported as its own cohort.
 
+The complete `config.yaml` around it, for a generic-adapter agent (any Python function `(user_text, history) -> str | dict`, sync or async):
+
+```yaml
+# impulse:validate
+agent:
+  type: voice                                 # voice | chat | multimodal
+  adapter: generic
+  entrypoint: "sales_agent.handler:respond"   # module:function, importable from this folder
+  system_prompt: "system_prompt.txt"          # the judge's rubric; relative to this file
+
+judge:
+  primary_model: "YOUR_PRIMARY_MODEL"
+  fast_model: "YOUR_FAST_MODEL"
+
+simulator:
+  model: "YOUR_SIMULATOR_MODEL"
+  persona_style: realistic                    # realistic | adversarial | polite
+
+scenarios:
+  - name: "sales_lead_followup_hindi"
+    language: hi-IN
+    accent: north-indian
+    domain: ecommerce
+    direction: outbound
+    max_turns: 9
+    persona: "small business owner, interested but price-sensitive, wants ROI before committing"
+    expected_outcome: "the caller understands the price and the free trial and agrees to a demo call"
+    assertions: []
+    metrics: [UNIV-001, UNIV-003, UNIV-005, UNIV-013, UNIV-019, VOICE-027, VOICE-035]
+```
+
+`YOUR_..._MODEL` placeholders are resolved from the environment variables `IMPULSE_MODEL_PRIMARY`, `IMPULSE_MODEL_FAST`, `IMPULSE_MODEL_SIMULATOR`, or from `.impulse/config.toml`; you can also write LiteLLM model strings here ([Configuration](configuration.md#where-models-and-keys-come-from)). Then `impulse doctor config.yaml` and `impulse run config.yaml`. To draft more scenarios from your system prompt, use `impulse generate --prompt system_prompt.txt --domain ecommerce --language hi-IN` (written to `scenarios/generated.yaml`; review them before use).
+
 Adapt it: put your offer into `expected_outcome`, describe your typical lead in `persona`, and add one scenario per language your agent speaks. Add `UNIV-023` (and `expected_tool_calls` for your CRM or calendar tool) when the agent books demos itself.
 
 ### US ecommerce support: an honest answer in English

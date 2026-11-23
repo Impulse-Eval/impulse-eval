@@ -13,7 +13,7 @@ This guide runs Impulse with no API key: Ollama serves the language models, and 
 ```bash
 ollama pull YOUR_FAST_MODEL          # simulator and fast judge
 ollama pull YOUR_PRIMARY_MODEL       # primary judge
-pip install -e ".[local]"            # without a clone: pip install "impulse-evals[local] @ git+https://github.com/Impluse-Evals/impulse-eval"
+pip install -e ".[local]"            # without a clone: pip install "impulse-evals[local] @ git+https://github.com/Impulse-Eval/impulse-eval"
 impulse init --profile free          # asks for the language and the Ollama tags, never for a key
 export PYTHONPATH=examples           # PowerShell: $env:PYTHONPATH = "examples"
 impulse doctor examples/free/config.yaml
@@ -72,7 +72,7 @@ Success: `ollama list` shows both models.
 Straight from GitHub, with no clone (not verified with the `local` extra):
 
 ```bash
-pip install "impulse-evals[local] @ git+https://github.com/Impluse-Evals/impulse-eval"
+pip install "impulse-evals[local] @ git+https://github.com/Impulse-Eval/impulse-eval"
 ```
 
 To work from your clone, install from the root of the clone (not verified with the `local` extra):
@@ -217,7 +217,7 @@ Success (not verified): `impulse doctor` shows `PASS  voice TTS  local_hf: 'loca
 When `local_hf` is too heavy for your machine, use `provider: local_light`. It is free too. Kokoro TTS (an ONNX model) and faster-whisper STT run in the Impulse process. It needs no PyTorch, no GPU, no server and no key.
 
 ```bash
-pip install -e ".[light]"     # from a clone; without one: pip install "impulse-evals[light] @ git+https://github.com/Impluse-Evals/impulse-eval"
+pip install -e ".[light]"     # from a clone; without one: pip install "impulse-evals[light] @ git+https://github.com/Impulse-Eval/impulse-eval"
 ```
 
 ```yaml

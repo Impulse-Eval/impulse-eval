@@ -47,6 +47,20 @@ Every adapter gives the runner the same data for each agent turn:
 - whether the caller interrupted the agent;
 - the tool calls the agent made in that turn.
 
+#### Why `heard_text` and `tool_calls` matter
+
+These two optional fields make the strongest checks possible:
+
+- **`heard_text`**: what your agent's own speech recognition heard the caller say. In voice mode, the agent-hearing word error rate (WER) metrics VOICE-009 and VOICE-013 compare it with what the simulated caller said. Without it they skip with "agent does not expose its transcription; return heard_text from the adapter".
+- **`tool_calls`**: every tool call your agent made in the turn. UNIV-023 (tool call correctness, judged against your system prompt) and UNIV-025 (exact `expected_tool_calls` and `forbidden_tool_calls` per scenario, checked by code) read them.
+
+How each adapter gets them:
+
+- **generic:** return a dict with `text`, and optionally `heard_text`, `tool_calls` and `audio` (the WAV bytes of the reply, for the audio metrics in voice mode) instead of a string; see the [Generic adapter](#generic-adapter). [examples/sample_agent.py](../examples/sample_agent.py) is a complete agent that returns a dummy `book_slot` call whenever the caller says "book".
+- **LiveKit and Pipecat:** captured without code changes. Pipecat from the bot's RTVI user transcriptions and function call messages; LiveKit from the agent's transcription streams and its `lk.agent.session` tool events. Both were verified with live agents in the 2026-10-24 and 2026-10-25 test campaigns, with `heard_text` on every user turn of the voice runs.
+- **http:** the JSON answer carries `heard_text` and `tool_calls` the same way ([HTTP adapter](#http-adapter)).
+- **custom:** subclass `AgentInterface` and return `AgentReply(text=..., latency_ms=..., heard_text=..., tool_calls=[ToolCall(...)])` from `send()` ([Writing your own adapter](#writing-your-own-adapter)).
+
 ### The plugin API
 
 Adapters, metrics, and judges are built against the plugin API files:
@@ -132,7 +146,7 @@ async def respond(user_text, history):
 |---|---|
 | config | `adapter: livekit` and a `livekit:` block with `url` |
 | how it connects | joins a LiveKit room as an ordinary client participant, like a person would |
-| extra to install | `pip install -e ".[livekit]"` from a clone, or `pip install "impulse-evals[livekit] @ git+https://github.com/Impluse-Evals/impulse-eval"` without one |
+| extra to install | `pip install -e ".[livekit]"` from a clone, or `pip install "impulse-evals[livekit] @ git+https://github.com/Impulse-Eval/impulse-eval"` without one |
 | keys | the LiveKit API key and secret, from the variables named by `api_key_env` and `api_secret_env` |
 | system prompt | the `agent.system_prompt` file, else asked from the agent |
 | turn timeout | `livekit.turn_timeout_s`, else `voice_config.timeout_s` in voice mode, else 30 s |
@@ -278,7 +292,7 @@ if __name__ == "__main__":
 | config | `adapter: pipecat` and a `pipecat:` block with `url` |
 | how it connects | as a client of your running bot, speaking RTVI; Impulse never imports or runs your pipeline |
 | modes | `eval` (the default; start the bot with `-t eval`) or `websocket` (the fallback) |
-| extra to install | `pip install -e ".[pipecat]"` from a clone, or `pip install "impulse-evals[pipecat] @ git+https://github.com/Impluse-Evals/impulse-eval"` without one; installs `pipecat-ai>=1.12,<1.13` |
+| extra to install | `pip install -e ".[pipecat]"` from a clone, or `pip install "impulse-evals[pipecat] @ git+https://github.com/Impulse-Eval/impulse-eval"` without one; installs `pipecat-ai>=1.12,<1.13` |
 | system prompt | the `agent.system_prompt` file, else the bot's answer to the `get_system_prompt` client message |
 | tool calls | need the RTVI function call report level FULL; eval mode requests it itself |
 | concurrency | Pipecat bots serve one client at a time, so scenarios run one by one |

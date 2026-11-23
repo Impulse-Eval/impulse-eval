@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Pipecat example: Impulse connects to your running Pipecat bot through Pipecat's eval transport.
 # Bot side: see README.md in this folder (start the bot with -t eval and copy the URL it prints).
-#   pip install -e ".[pipecat]"     (from a clone; without one: pip install "impulse-evals[pipecat] @ git+https://github.com/Impluse-Evals/impulse-eval")
+#   pip install -e ".[pipecat]"     (from a clone; without one: pip install "impulse-evals[pipecat] @ git+https://github.com/Impulse-Eval/impulse-eval")
 #   impulse doctor examples/pipecat/config.yaml
 #   impulse run examples/pipecat/config.yaml
 # Pipecat bots serve one client at a time, so scenarios always run one by one.

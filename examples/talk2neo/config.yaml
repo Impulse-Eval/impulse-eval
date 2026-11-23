@@ -3,7 +3,7 @@
 # Before use: fill in system_prompt.txt, set livekit.url (and livekit.agent_name if the agent's worker
 # is registered with one), and put the LiveKit API key and secret in the environment variables named
 # below (or under [keys] in .impulse/config.toml). Needs the livekit extra: pip install -e ".[livekit]"
-# from a clone (without one: pip install "impulse-evals[livekit] @ git+https://github.com/Impluse-Evals/impulse-eval").
+# from a clone (without one: pip install "impulse-evals[livekit] @ git+https://github.com/Impulse-Eval/impulse-eval").
 # Impulse's access token carries the can_manage_agent_session grant, which tool-call capture and the
 # system prompt request (lk.agent.session) need: the LiveKit server / project must allow it (not
 # verified against a live LiveKit server). Then:
